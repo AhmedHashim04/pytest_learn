@@ -1,5 +1,4 @@
 from bank import BankAccount
-import pytest
 
 def test_initial_balance():
     account = BankAccount(1000)
@@ -10,3 +9,26 @@ def test_initial_balance():
     assert account.get_balance() == -500 , f' balance{account.get_balance()}'
     account = BankAccount(0)
     assert account.get_balance() == 0 , f' balance{account.get_balance()}'
+
+def test_deposit():
+    account = BankAccount(1000)
+    account.deposit(500)
+    assert account.get_balance() == 1500, f' balance{account.get_balance()}'
+    account.deposit(0)
+    assert account.get_balance() == 1500, f' balance{account.get_balance()}'
+    account.deposit(-500)
+    assert account.get_balance() == 1500, f' balance{account.get_balance()}'
+
+def test_withdraw():
+    account = BankAccount(1000)
+    account.withdraw(200)
+    assert account.get_balance() == 800, f' balance{account.get_balance()}'
+    account.withdraw(0)
+    assert account.get_balance() == 800, f' balance{account.get_balance()}'
+    account.withdraw(-200)
+    assert account.get_balance() == 800, f' balance{account.get_balance()}'
+    account.withdraw(1000)
+    assert account.get_balance() == 800, f' balance{account.get_balance()}'
+    account.withdraw(2000)
+    assert account.get_balance() == 800, f' balance{account.get_balance()}'
+    
