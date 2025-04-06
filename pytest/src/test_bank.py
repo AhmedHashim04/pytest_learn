@@ -31,4 +31,18 @@ def test_withdraw():
     assert account.get_balance() == 800, f' balance{account.get_balance()}'
     account.withdraw(2000)
     assert account.get_balance() == 800, f' balance{account.get_balance()}'
-    
+
+def test_transactions():
+    account = BankAccount(1000)
+    account.deposit(500)
+    assert account.transactions == ["Deposited: 500"], f' transactions{account.transactions}'
+    account.withdraw(200)
+    assert account.transactions == ["Deposited: 500", "Withdrew: 200"], f' transactions{account.transactions}'
+    account.withdraw(2000)
+    assert account.transactions == ["Deposited: 500", "Withdrew: 200"], f' transactions{account.transactions}'
+    account.deposit(-500)
+    assert account.transactions == ["Deposited: 500", "Withdrew: 200"], f' transactions{account.transactions}'
+    account.withdraw(0)
+    assert account.transactions == ["Deposited: 500", "Withdrew: 200"], f' transactions{account.transactions}'
+    account.deposit(0)
+    assert account.transactions == ["Deposited: 500", "Withdrew: 200"], f' transactions{account.transactions}'
