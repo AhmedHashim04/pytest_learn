@@ -1,5 +1,9 @@
-def get_full_name(first, last):
+
+def get_full_name(first, last, middle=""):
     """Return the full name of a person."""
-    name= f"{first} {last}11"
+    if middle:
+        name = f"{first} {middle} {last}"
+    else:
+        name = f"{first} {last}"
     return name.title()
 
